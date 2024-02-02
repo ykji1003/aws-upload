@@ -1,0 +1,19 @@
+{
+  "name": "aws-upload",
+  "version": "0.0.1",
+  "description": "Lambda 이미지 리사이징",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "JaeikKim",
+  "license": "ISC",
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.504.0",
+    "sharp": "^0.33.2"
+  },
+  "devDependencies": {
+    "prettier": "^3.2.4"
+  }
+}
