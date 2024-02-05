@@ -4,10 +4,11 @@ const { S3Client } = require('@aws-sdk/client-s3');
 const s3 = new S3Client();
 
 exports.handler = async (event, context, callback) => {
+
     const Bucket = event.Records[0].s3.bucket.name;
     const Key = decodeURIComponent(event.Records[0].s3.object.key); // original/고양이.png
-    const filename = Key.split('/')[-1];
-    const ext = key.split('.').at(-1).toLowerCase();
+    const filename = Key.split('/').at(-1);
+    const ext = Key.split('.').at(-1).toLowerCase();
 
     // sharp에서는 확장자가 jpg면 jpeg로 변경해줘야 한다.
     const requiredFormat = ext === 'jpg' ? 'jpeg' : ext;
@@ -26,6 +27,8 @@ exports.handler = async (event, context, callback) => {
             body : resizedImage,
         });
         console.log('put', resizedImage.length);
+
+        // 첫번째자리는 에러자리, 두번째자리는 응답값자리
         return callback(null, `thumb/${filename}`);
     } catch (error) {
         console.error(error);
