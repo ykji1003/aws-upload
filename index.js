@@ -16,8 +16,8 @@ exports.handler = async (event, context, callback) => {
     try {
         const getObject = await s3.send(new GetObjectCommand({ Bucket, Key}));
         const buffers = [];
-        console.log('getObject.body', getObject.body);
-        for await (const data of getObject.body) {
+        console.log('getObject.Body', getObject.Body);
+        for await (const data of getObject.Body) {
             buffers.push(data);
         }
         const imagebuffer = Buffer.concat(buffers);
