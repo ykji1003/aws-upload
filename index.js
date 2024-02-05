@@ -14,7 +14,7 @@ exports.handler = async (event, context, callback) => {
     const requiredFormat = ext === 'jpg' ? 'jpeg' : ext;
     console.log('name', filename, 'ext', ext);
     try {
-        const getObject = await s3.send(new GetObjectCommand({ borket, Key}));
+        const getObject = await s3.send(new GetObjectCommand({ Bucket, Key}));
         const buffers = [];
         console.log('getObject.body', getObject.body);
         for await (const data of getObject.body) {
